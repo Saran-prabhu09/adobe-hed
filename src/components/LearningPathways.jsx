@@ -9,7 +9,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import Graphicdesigner from "../assets/images/Graphicdesigner.mp4";
-import ContentCreator from "../assets/images/contentcreator.mp4";
+import ContentCreator from "../assets/images/ContentCreator.mp4";
 import marketing from "../assets/images/marketing.mp4";
 
 import certificate from "../assets/images/certificate.png";
