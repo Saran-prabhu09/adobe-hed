@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Frame from "../assets/icons/Frame.png";
@@ -13,6 +13,7 @@ const stats = [
 ];
 */
 }
+const ease = [0.25, 1, 0.5, 1];
 
 const hiddenStates = {
   left: {
@@ -83,10 +84,15 @@ function Reveal({
 function LazyHeroGraphic() {
   const ref = useRef(null);
   const inView = useInView(ref, { amount: 0.05 });
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    if (inView) setIsLoaded(true);
+  }, [inView]);
 
   return (
     <div ref={ref} className="relative w-full">
-      {inView ? (
+      {isLoaded ? (
         <motion.img
           src={HeroGraphic}
           alt="Adobe AI Skills Center Collage"
