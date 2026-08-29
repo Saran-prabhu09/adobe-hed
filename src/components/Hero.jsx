@@ -13,6 +13,7 @@ const stats = [
 ];
 */
 }
+
 const hiddenStates = {
   left: {
     opacity: 0,
@@ -85,30 +86,34 @@ function LazyHeroGraphic() {
 
   return (
     <div ref={ref} className="relative w-full">
-      <motion.img
-        src={HeroGraphic}
-        alt="Adobe AI Skills Center Collage"
-        loading="lazy"
-        decoding="async"
-        className="h-auto w-full max-w-full select-none object-contain"
-        initial={{
-          opacity: inView ? 1 : 0,
-          scale: inView ? 1 : 0.94,
-          x: inView ? 0 : 30,
-          filter: inView ? "blur(0px)" : "blur(8px)",
-        }}
-        animate={{
-          opacity: 1,
-          scale: 1,
-          x: 0,
-          filter: "blur(0px)",
-        }}
-        transition={{
-          duration: 1.1,
-          ease: [0.16, 1, 0.3, 1],
-        }}
-        draggable={false}
-      />
+      {inView ? (
+        <motion.img
+          src={HeroGraphic}
+          alt="Adobe AI Skills Center Collage"
+          loading="lazy"
+          decoding="async"
+          className="h-auto w-full max-w-full select-none object-contain"
+          initial={{
+            opacity: 0,
+            scale: 0.94,
+            x: 30,
+            filter: "blur(8px)",
+          }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+            x: 0,
+            filter: "blur(0px)",
+          }}
+          transition={{
+            duration: 1.1,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+          draggable={false}
+        />
+      ) : (
+        <div className="aspect-1000/639 w-full rounded-3xl bg-slate-50 animate-pulse" />
+      )}
     </div>
   );
 }
